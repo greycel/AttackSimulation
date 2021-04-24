@@ -1,0 +1,57 @@
+#----------------------- Winlogbeat ----------------------
+# You can download the latest stable version of winlogbeat here:
+# https://www.elastic.co/downloads/beats/winlogbeat
+#
+#------------- Windows event Log sources to collect -----------
+winlogbeat.event_logs:
+  - name: Application
+    ignore_older: 15m
+    fields:
+      log: "windows-log"
+  - name: Security
+    ignore_older: 15m
+    fields:
+      log: "windows-log"
+  - name: System
+    ignore_older: 15m
+    fields:
+      log: "windows-log"
+  - name: Microsoft-windows-Sysmon/Operational
+    ignore_older: 15m
+    fields:
+      log: "windows-log"
+  - name: Microsoft-windows-PowerShell/Operational
+    event_id: 4100,4103,4104
+    ignore_older: 15m
+    fields:
+      log: "windows-log"
+  - name: Windows PowerShell
+    event_id: 200,400,500,501,800
+    ignore_older: 15m
+    fields:
+      log: "windows-log"
+  - name: Microsoft-Windows-WMI-Activity/Operational
+    event_id: 5857,5858,5859,5860,5861
+    ignore_older: 15m
+    fields:
+      log: "windows-log"
+  - name: Microsoft-windows-TaskScheduler/Operational
+    ignore_older: 15m
+    fields:
+      log: "windows-log"
+
+
+#------------------ Logstash Output Config ------------------
+output.logstash:
+  # The Logstash hosts
+  codec.json:
+    pretty: true
+  hosts: ["<Logstash-Host>:<Port>"]
+
+#--------------- To write JSON log to disk ------------------
+#output.file:
+#  path: "C:\\Users\\test\\Desktop\\"
+#  filename: samplelogs.json
+
+
+  winlogbeat.registry_file: C:/Program Files/winlogbeat/.winlogbeat.yml
