@@ -1,2 +1,2 @@
 # Simulation-Scripts
-Scripts for preparing box for simulations
+Repo of Scripts that may come in handy while preparing system for Red-Team Simulation, collected from different sources..
